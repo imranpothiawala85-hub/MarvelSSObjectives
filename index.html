@@ -1,0 +1,2207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bombay Coaching Classes - Online Objective Test</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f6fb;
+    color: #222;
+}
+
+.header {
+    background: #17365d;
+    color: white;
+    text-align: center;
+    padding: 20px 12px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 27px;
+}
+
+.header h2 {
+    margin: 7px 0 0;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 15px;
+}
+
+.info-box {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.student-box {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.student-box input {
+    flex: 1;
+    min-width: 220px;
+    padding: 12px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.progress-area {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 7px rgba(0,0,0,.1);
+}
+
+.progress-text {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #28a745;
+    transition: width .3s;
+}
+
+.question {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+}
+
+.question h3 {
+    margin-top: 0;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.option {
+    display: block;
+    padding: 13px;
+    margin: 9px 0;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.option:hover {
+    background: #eef5ff;
+    border-color: #4285f4;
+}
+
+.option input {
+    margin-right: 10px;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+button {
+    border: none;
+    border-radius: 7px;
+    padding: 13px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.prev {
+    background: #6c757d;
+    color: white;
+}
+
+.next {
+    background: #007bff;
+    color: white;
+}
+
+.submit {
+    background: #28a745;
+    color: white;
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0 30px;
+}
+
+.result {
+    display: none;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+}
+
+.score {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.result-summary {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.summary-box {
+    padding: 15px 25px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.correct-box {
+    background: #d4edda;
+    color: #155724;
+}
+
+.wrong-box {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.unanswered-box {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.review-item {
+    border-left: 6px solid #ccc;
+    padding: 15px;
+    margin: 15px 0;
+    background: #fafafa;
+    border-radius: 5px;
+}
+
+.review-correct {
+    border-left-color: #28a745;
+}
+
+.review-wrong {
+    border-left-color: #dc3545;
+}
+
+.review-unanswered {
+    border-left-color: #ffc107;
+}
+
+.your-answer {
+    color: #c82333;
+    font-weight: bold;
+}
+
+.correct-answer {
+    color: #218838;
+    font-weight: bold;
+}
+
+.paper-label {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.restart {
+    background: #17365d;
+    color: white;
+    width: 100%;
+}
+
+@media(max-width:600px) {
+    .header h1 {
+        font-size: 22px;
+    }
+
+    .header h2 {
+        font-size: 15px;
+    }
+
+    .question {
+        padding: 15px;
+    }
+
+    .question h3 {
+        font-size: 16px;
+    }
+
+    .option {
+        font-size: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>BOMBAY COACHING CLASSES</h1>
+    <h2>Online Objective Test - Social Science / General Knowledge</h2>
+</div>
+
+<div class="container">
+
+<div class="info-box">
+    <h3>Student Details</h3>
+
+    <div class="student-box">
+        <input type="text" id="studentName" placeholder="Enter Student Name">
+        <input type="text" id="studentRoll" placeholder="Enter Roll Number">
+    </div>
+
+    <p>
+        <b>Total Questions:</b> 240 &nbsp; | &nbsp;
+        <b>Marks:</b> 240 &nbsp; | &nbsp;
+        <b>1 mark for each correct answer</b>
+    </p>
+</div>
+
+<div class="progress-area">
+    <div class="progress-text">
+        Attempted: <span id="attempted">0</span> / 240
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+</div>
+
+<div id="quiz"></div>
+
+<div class="navigation">
+    <button class="prev" onclick="previousPage()">← Previous</button>
+    <button class="next" onclick="nextPage()">Next →</button>
+</div>
+
+<button class="submit" onclick="submitTest()">
+    SUBMIT TEST
+</button>
+
+<div id="result" class="result"></div>
+
+</div>
+
+<script>
+
+/*
+===========================================================
+QUESTION DATABASE
+answer = correct option number
+0 = A
+1 = B
+2 = C
+3 = D
+===========================================================
+*/
+
+const questions = [
+
+/* ===================== PAPER 1 ===================== */
+
+{
+paper:1,
+q:"Victory Tower is located in or associated with which place?",
+o:["Patan","Vadnagar","Surat","Kolkata"],
+a:1
+},
+{
+paper:1,
+q:"Jari (Zari) Work is famous in which city?",
+o:["Surat","Patan","Vadnagar","Kolkata"],
+a:0
+},
+{
+paper:1,
+q:"Pillar Inscription is associated with which script?",
+o:["Brahmi Script","Devanagari Script","Sanskrit","Pali"],
+a:0
+},
+{
+paper:1,
+q:"Elephanta Caves are locally known by which name?",
+o:["Dharapuri","Elephanta","Ajanta","Ellora"],
+a:0
+},
+{
+paper:1,
+q:"Indian Museum is located in which city?",
+o:["Vadodara","Kolkata","Hyderabad","New Delhi"],
+a:1
+},
+{
+paper:1,
+q:"Statement: Local people are permitted to collect wood and graze their animals in reserved forests.",
+o:["True","False","Partially True","None of the above"],
+a:1
+},
+{
+paper:1,
+q:"Statement: By multiplying the total income of the country by the total population, we obtain 'per capita income'.",
+o:["True","False","Partially True","Depends on GDP"],
+a:1
+},
+{
+paper:1,
+q:"Statement: Government of Gujarat has started to provide nutritional food to adolescent girls and to develop their skill under Sabla Yojna.",
+o:["True","False","Partially True","Applicable only to rural areas"],
+a:0
+},
+{
+paper:1,
+q:"Statement: Seats are reserved for Scheduled Castes and Scheduled Tribes in Gram Panchayat and Municipality.",
+o:["True","False","Only in Municipalities","Only in Gram Panchayats"],
+a:0
+},
+{
+paper:1,
+q:"Statement: As per 2011 estimate, the maximum numbers of elderly people are in Arunachal Pradesh.",
+o:["True","False","Partially True","Data unavailable"],
+a:1
+},
+{
+paper:1,
+q:"Krishnarajsagar Multi-purpose Project is situated on which river?",
+o:["Kaveri","Krishna","Godavari","Narmada"],
+a:0
+},
+{
+paper:1,
+q:"The concept of poverty was first propounded by the director of WHO:",
+o:["Adam Smith","Byod Orr","Amartya Sen","Karl Marx"],
+a:1
+},
+{
+paper:1,
+q:"Which American President presented four rights of the consumers on March 15, 1962, in the American Parliament?",
+o:["Ralph Nader","John Franklin Kennedy","Ronald Reagan","Abraham Lincoln"],
+a:1
+},
+{
+paper:1,
+q:"In which lane are light, medium-speed, and heavy vehicles normally driven?",
+o:["Left side","Right side","In the middle","Any lane"],
+a:0
+},
+{
+paper:1,
+q:"What is the main source of energy on Earth?",
+o:["Earth","Sun","Mars","Moon"],
+a:1
+},
+{
+paper:1,
+q:"Which of the following is a Bio-reserve zone?",
+o:["Periyar","Dachigam","Corbett","Panchmarhi"],
+a:3
+},
+{
+paper:1,
+q:"Which of the following is NOT a silk type?",
+o:["Eri","Tasar","Mulberry","Prawns"],
+a:3
+},
+{
+paper:1,
+q:"What is the biggest railway station of Gujarat?",
+o:["Ahmedabad","Vadodara","Surat","Bhuj"],
+a:0
+},
+{
+paper:1,
+q:"When did the Gujarat Government implement the Gujarat Consumer Protection Act?",
+o:["21 May, 1988","18 February, 1988","15 March, 1988","26 January, 1988"],
+a:1
+},
+{
+paper:1,
+q:"What is the main function of a helmet while driving a two-wheeler?",
+o:["To reduce the impact of a collision on the head","To protect head from heat stroke","To stop wind from entering eyes","To protect ears from noise pollution"],
+a:0
+},
+{
+paper:1,
+q:"Which international organization was set up to certify edible products?",
+o:["ISO","Codex Alimentarius Commission (CAC)","FAO","WHO"],
+a:1
+},
+{
+paper:1,
+q:"Through which process do green leaves take carbon from the air?",
+o:["Respiration","Photosynthesis","Transpiration","Oxidation"],
+a:1
+},
+{
+paper:1,
+q:"Which Government Industrial Policy reduces restrictions and controls imposed on the private sector and encourages economic development?",
+o:["Privatization","Liberalization","Globalization","Nationalization"],
+a:1
+},
+{
+paper:1,
+q:"Which animal once found frequently in Narmada, Tapi, Mahi, and Sabarmati rivers of Gujarat is almost extinct?",
+o:["Water-Fowl / Jalbiladi (Otter)","Crocodile","Dolphin","Blue Whale"],
+a:0
+},
+
+/* ===================== PAPER 2 ===================== */
+
+{
+paper:2,
+q:"Vautha Fair is held at which place?",
+o:["Dholka","Jamnagar","Patan","Ajmer"],
+a:0
+},
+{
+paper:2,
+q:"Who authored Natyashastra?",
+o:["Bharatmuni","Panini","Kalidas","Bhasa"],
+a:0
+},
+{
+paper:2,
+q:"In which year was Project Tiger launched in India?",
+o:["1971","1871","1991","1952"],
+a:0
+},
+{
+paper:2,
+q:"Limestone is majorly found in which district of Gujarat?",
+o:["Jamnagar","Dholka","Surat","Vadodara"],
+a:0
+},
+{
+paper:2,
+q:"What is the main source of energy on Earth?",
+o:["Wind","Coal","Sun","Water"],
+a:2
+},
+{
+paper:2,
+q:"Statement: Maharshi Panini was a great Sanskrit grammarian.",
+o:["True","False","Partially True","Incorrect"],
+a:0
+},
+{
+paper:2,
+q:"Statement: Adhai-Din-Ka Jhopara was built by Qutub-ud-din Aibak in Ajmer.",
+o:["True","False","Built by Iltutmish","Located in Delhi"],
+a:0
+},
+{
+paper:2,
+q:"Statement: The motorcycle rider and the pillion rider should not wear a helmet.",
+o:["True","False","Optional","Only rider must wear"],
+a:1
+},
+{
+paper:2,
+q:"Statement: United Nations had declared 1991 as Women's Year.",
+o:["True","False","Declared 1975","Declared 2001"],
+a:1
+},
+{
+paper:2,
+q:"Statement: Those castes which are included in the schedule of Article 342 are called Scheduled Castes.",
+o:["True","False","Called Scheduled Tribes","Article 341"],
+a:1
+},
+{
+paper:2,
+q:"Salarjung Museum is situated in which city?",
+o:["Mumbai","Hyderabad","Bhopal","New Delhi"],
+a:1
+},
+{
+paper:2,
+q:"Let us get good thoughts and vibrations from all four directions is the message of which Veda?",
+o:["Rigveda","Samveda","Yajurveda","Atharvaveda"],
+a:0
+},
+{
+paper:2,
+q:"In Gujarat, which multi-purpose project is constructed on the Sabarmati river?",
+o:["Dharoi","Kadana","Ukai","Sardar Sarovar"],
+a:0
+},
+{
+paper:2,
+q:"Which are the major mediums of irrigation in India?",
+o:["Canals","Ponds","Wells and tube wells","Rivers"],
+a:2
+},
+{
+paper:2,
+q:"Which National Highway is the longest highway of the country?",
+o:["National Highway 27","National Highway 44","National Highway 141","National Highway 8"],
+a:1
+},
+{
+paper:2,
+q:"Which statement regarding Khet Talavadi is true?",
+o:["Raj: It is an important source to obtain water for industries.","Shobha: It is an important part of Grow more trees movement.","Reema: It is a modern technique to increase soil erosion.","Param: It is a part of rainwater harvesting."],
+a:3
+},
+{
+paper:2,
+q:"Why did the white marble of Taj Mahal turn pale and dull?",
+o:["Land Pollution","Water Pollution","Air Pollution","Noise Pollution"],
+a:2
+},
+{
+paper:2,
+q:"How much percentage of the Earth is covered with water?",
+o:["62%","71%","78%","76%"],
+a:1
+},
+{
+paper:2,
+q:"Normally, drivers should drive vehicles in which lane?",
+o:["Right side","Left side","In the middle","Both Left and Right"],
+a:1
+},
+{
+paper:2,
+q:"Which factor is considered a natural tool for production?",
+o:["Land","Capital","Labour","Entrepreneurship"],
+a:0
+},
+{
+paper:2,
+q:"Which is the largest port of Gujarat?",
+o:["Porbandar","Kandla","Mundra","Bhavnagar"],
+a:1
+},
+{
+paper:2,
+q:"When did the first railway start in India?",
+o:["1853","1857","1901","1947"],
+a:0
+},
+{
+paper:2,
+q:"How is Per Capita Income calculated?",
+o:["Total population divided by National Income","National Income divided by Total Population","Gross Domestic Product minus taxes","Exports minus imports"],
+a:1
+},
+{
+paper:2,
+q:"Cattle rearing, fishing, and mining of raw metal are included in which sector of the Indian economy?",
+o:["Primary sector","Secondary sector","Service sector","Financial sector"],
+a:0
+},
+
+/* ===================== PAPER 3 ===================== */
+
+{
+paper:3,
+q:"Bahucharaji Fair is associated with which location?",
+o:["Mahesana","Lambha","Patan","Vadodara"],
+a:0
+},
+{
+paper:3,
+q:"Which musical text was written by Pandit Ahobale?",
+o:["Sangeet Ratnakar","Sangeet Parijat","Natyashastra","Sangeet Makarand"],
+a:1
+},
+{
+paper:3,
+q:"Who is known as the cleanliness worker of nature?",
+o:["Vulture","Crow","Eagle","Peacock"],
+a:0
+},
+{
+paper:3,
+q:"Lambha in Gujarat is associated with which source of energy?",
+o:["Solar energy","Hydro energy","Wind energy","Geothermal energy"],
+a:2
+},
+{
+paper:3,
+q:"The Earth Conference (1972) was held at which place?",
+o:["Stockholm","Paris","Geneva","New York"],
+a:0
+},
+{
+paper:3,
+q:"Statement: Literature composed based on philosophy is known as Aranyakas.",
+o:["True","False","Known as Vedas","Known as Upanishads"],
+a:0
+},
+{
+paper:3,
+q:"Statement: There are four groups of caves in Junagadh.",
+o:["True","False","There are 3 groups","There are 5 groups"],
+a:1
+},
+{
+paper:3,
+q:"Statement: Government has implemented Essential Commodities Act in 1977 A.D.",
+o:["True","False","Enacted in 1955","Enacted in 1986"],
+a:1
+},
+{
+paper:3,
+q:"Statement: Under Saraswati Sabla Yojna, girls have been given cycles free of cost.",
+o:["True","False","Given laptops","Given scholarships"],
+a:1
+},
+{
+paper:3,
+q:"Statement: According to Article 17, Untouchability is totally eradicated.",
+o:["True","False","Article 15","Article 19"],
+a:0
+},
+{
+paper:3,
+q:"Rashtriya Manav Sangrahalaya is situated in which city?",
+o:["Delhi","Hyderabad","Bhopal","Kolkata"],
+a:2
+},
+{
+paper:3,
+q:"Indian government constituted the Indian Board for Wildlife in which year?",
+o:["1952 A.D.","1976 A.D.","1986 A.D.","1992 A.D."],
+a:0
+},
+{
+paper:3,
+q:"What is the main source of surface water?",
+o:["Lakes","Rivers","Rainfall","Ponds"],
+a:1
+},
+{
+paper:3,
+q:"Grand Anicut Canal was constructed across river:",
+o:["Krishna","Kaveri","Godavari","Narmada"],
+a:1
+},
+{
+paper:3,
+q:"Expressways are also called:",
+o:["Drut Gati Marg","Border Road","National Highway","Bypass Road"],
+a:0
+},
+{
+paper:3,
+q:"Match the Museums correctly with their cities: National Museum, Salar Jung Museum, Vadodara Museum, Lalbhai Dalpatbhai Museum.",
+o:["1-C, 2-D, 3-A, 4-B","1-D, 2-C, 3-B, 4-A","1-A, 2-B, 3-C, 4-D","1-D, 2-A, 3-B, 4-C"],
+a:1
+},
+{
+paper:3,
+q:"After arranging the following multipurpose projects from South to North, which option is correct?",
+o:["Bhakra-Nangal, Nagarjunasagar, Chambal, Narmada","Chambal, Bhakra-Nangal, Narmada, Nagarjunasagar","Narmada, Chambal, Nagarjunasagar, Bhakra-Nangal","Nagarjunasagar, Narmada, Chambal, Bhakra-Nangal"],
+a:3
+},
+{
+paper:3,
+q:"About how much water in India is useful for irrigation?",
+o:["84%","83%","52%","8%"],
+a:0
+},
+{
+paper:3,
+q:"Who efficiently combines the three factors of production (Land, Labour, Capital)?",
+o:["Capital","Land","Labour","Entrepreneur"],
+a:3
+},
+{
+paper:3,
+q:"Which system is also known as Free Economy?",
+o:["Market System","Socialist System","Mixed Economy","All of these"],
+a:0
+},
+{
+paper:3,
+q:"How long is the coastline of India?",
+o:["7516.6 km","6100 km","8100 km","5400 km"],
+a:0
+},
+{
+paper:3,
+q:"Which is the free port for the entire year in Gujarat?",
+o:["Kandla","Porbandar","Bhavnagar","Mundra"],
+a:1
+},
+{
+paper:3,
+q:"What is the main occupation of the people of developing countries?",
+o:["Agriculture / Farming","Industry","Trade","Mining"],
+a:0
+},
+{
+paper:3,
+q:"In which sector of the economy are Education, Banking & Insurance companies included?",
+o:["Primary Sector","Secondary Sector","Service Sector","Industrial Sector"],
+a:2
+},
+
+/* ===================== PAPER 4 ===================== */
+
+{
+paper:4,
+q:"Thanjavur was the capital of which dynasty?",
+o:["Chola Dynasty","Chalukya Dynasty","Maurya Dynasty","Gupta Dynasty"],
+a:0
+},
+{
+paper:4,
+q:"Munsar Lake is located at which place?",
+o:["Viramgam","Patan","Dholka","Junagadh"],
+a:0
+},
+{
+paper:4,
+q:"Who wrote Abhigyan Shakuntalam?",
+o:["Kalidas","Chandbardai","Banabhatta","Kautilya"],
+a:0
+},
+{
+paper:4,
+q:"Who wrote Prithviraj Raso?",
+o:["Kalidas","Chandbardai","Somdev","Bhavbhuti"],
+a:1
+},
+{
+paper:4,
+q:"Inlay Work (Jadatar work) is famous in which city?",
+o:["Bikaner","Jaipur","Surat","Ahmedabad"],
+a:0
+},
+{
+paper:4,
+q:"Statement: Bhakra Nangal Dam is situated on Kosi river.",
+o:["True","False","Situated on Sutlej","Situated on Ganga"],
+a:1
+},
+{
+paper:4,
+q:"Statement: The largest oil refinery of the world is located at Jamnagar in Gujarat.",
+o:["True","False","Located in Vadodara","Located in Mumbai"],
+a:0
+},
+{
+paper:4,
+q:"Statement: Government of India established Indian Standards Institute (ISI) in 1955 to regulate quality.",
+o:["True","False","Established in 1947","Established in 1986"],
+a:1
+},
+{
+paper:4,
+q:"Statement: Minority is such a group of people which is not in majority with regard to religion or language within a certain region or regions.",
+o:["True","False","Based only on caste","Based only on gender"],
+a:0
+},
+{
+paper:4,
+q:"Statement: 121 Abhayam Women Helpline has been started in Gujarat for Women security.",
+o:["True","False","Partially True","None of these"],
+a:1
+},
+{
+paper:4,
+q:"Which species is found in the cold forests of Eastern Himalayas?",
+o:["Snow Leopard","Red Panda","Musk Deer","Tiger"],
+a:1
+},
+{
+paper:4,
+q:"What term means to solve various problems associated with river valleys?",
+o:["Watershed Development","Multi-purpose project","Rain Water Harvesting","Afforestation"],
+a:1
+},
+{
+paper:4,
+q:"Which state gets maximum solar energy in India?",
+o:["Uttar Pradesh","Maharashtra","Gujarat","Tamil Nadu"],
+a:2
+},
+{
+paper:4,
+q:"Which port is a free port for the entire year?",
+o:["Bhavnagar","Porbandar","Poshitra","Kandla"],
+a:1
+},
+{
+paper:4,
+q:"An income not mentioned in the accounting book and on which tax is not paid is called:",
+o:["Smuggling","Hoarding","Black money","Inflation"],
+a:2
+},
+{
+paper:4,
+q:"Identify the temple shown in historical Dravidian architecture (Dravida style grand vimana temple):",
+o:["Delwara","Khajuraho","Meenakshi","Bruhadeshwar"],
+a:3
+},
+{
+paper:4,
+q:"Where is Indian Museum located?",
+o:["Ahmedabad","Kolkata","Hyderabad","Chennai"],
+a:1
+},
+{
+paper:4,
+q:"Upto Eighteenth century, India was ahead in which industry besides Handicraft and Cottage industry?",
+o:["Ship industry","Weapon industry","Aircraft industry","Cement industry"],
+a:0
+},
+{
+paper:4,
+q:"Which organization undertakes work like construction and maintenance of roads in inaccessible remote border areas, clearing snow etc.?",
+o:["Pawan Hans","ONGC","Border Road Organization","Indian Railways"],
+a:2
+},
+{
+paper:4,
+q:"On which basis is the Scheduled Caste status decided?",
+o:["Religion","Untouchability","Sect","Secularism"],
+a:1
+},
+{
+paper:4,
+q:"The uppermost thin layer of the Earth's crust is called:",
+o:["Land / Soil","Core","Mantle","Atmosphere"],
+a:0
+},
+{
+paper:4,
+q:"Which was the first mineral used by man?",
+o:["Iron","Copper","Bronze","Gold"],
+a:1
+},
+{
+paper:4,
+q:"Express Highway in Gujarat connects which two cities?",
+o:["Ahmedabad to Surat","Ahmedabad to Vadodara","Rajkot to Vadodara","Vadodara to Surat"],
+a:1
+},
+{
+paper:4,
+q:"What is the full form of WTO?",
+o:["World Trade Organization","World Transport Organization","World Tourism Organization","World Tariff Organization"],
+a:0
+},
+
+/* ===================== PAPER 5 ===================== */
+
+{
+paper:5,
+q:"Tana-Riri music festival is celebrated in which city?",
+o:["Vadnagar","Junagadh","Patan","Surat"],
+a:0
+},
+{
+paper:5,
+q:"Kuchipudi is the classical dance form of which state?",
+o:["Kerala","Tamil Nadu","Andhra Pradesh","Odisha"],
+a:2
+},
+{
+paper:5,
+q:"Rhino Vision concept is directly associated with:",
+o:["Project Elephant","Rhino Project","Project Tiger","Crocodile Project"],
+a:1
+},
+{
+paper:5,
+q:"Which country leads in the production of Mica in the world?",
+o:["India","USA","China","Russia"],
+a:0
+},
+{
+paper:5,
+q:"Formation of Humus in soil starts primarily from plant:",
+o:["Stem","Root","Leaf","Flower"],
+a:1
+},
+{
+paper:5,
+q:"Statement: The earlier Buddhist literature was written in Tamil language.",
+o:["True","False","Partially True","None of these"],
+a:0
+},
+{
+paper:5,
+q:"Statement: The stone inscription pillar at Sarnath is the best specimen of Sculpture.",
+o:["True","False","Specimen of Architecture","None of these"],
+a:1
+},
+{
+paper:5,
+q:"Statement: Natural farming makes plants stronger.",
+o:["True","False","Partially True","None of these"],
+a:0
+},
+{
+paper:5,
+q:"Statement: 1975 was celebrated as Women Empowerment Year.",
+o:["True","False","Women's Year","None of these"],
+a:1
+},
+{
+paper:5,
+q:"Statement: Communalism is a hindrance to the progress of individual, society and nation.",
+o:["True","False","Partially True","None of these"],
+a:0
+},
+{
+paper:5,
+q:"Wildlife Protection Act was enacted in India in:",
+o:["1975 A.D.","1979 A.D.","1972 A.D.","1980 A.D."],
+a:2
+},
+{
+paper:5,
+q:"Salarjung Museum is situated in which city?",
+o:["Hyderabad","Mumbai","Bhopal","Delhi"],
+a:0
+},
+{
+paper:5,
+q:"A road divided into more than one section by a vertical line for ease of traffic is called a:",
+o:["Driving road","Lane","Ride lane","Track"],
+a:1
+},
+{
+paper:5,
+q:"Irrigation by ponds is practiced more in which states of India?",
+o:["Northern","Eastern and Southern","Western","Central"],
+a:1
+},
+{
+paper:5,
+q:"The rail route between Dibrugarh and Kanyakumari is the longest railway route in India, which is known as:",
+o:["Vivek Express","Ashram Express","Shatabdi Express","Rajdhani Express"],
+a:0
+},
+{
+paper:5,
+q:"Which of the following statements is NOT correct?",
+o:["India proved the feeling of Vasudhaiva Kutumbakam in the world.","I am proud to say that I represent the religion that has taught the lesson of compassion and brotherhood to the world! - Swami Vivekanand.","Indians who believed in tolerance and universal brotherhood even welcomed Dutch and Britishers.","Ancient Indian torch bearers stressed upon economic unity of India."],
+a:3
+},
+{
+paper:5,
+q:"Connect the multipurpose projects with beneficiary states: Bhakra Nangal, Kosi, Nagarjuna Sagar, Narmada.",
+o:["(1-B), (2-A), (3-C), (4-D)","(1-B), (2-A), (3-D), (4-C)","(1-D), (2-C), (3-B), (4-A)","(1-C), (2-D), (3-A), (4-B)"],
+a:1
+},
+{
+paper:5,
+q:"Dharoi multi-purpose project is constructed on which river?",
+o:["Mahisagar","Sabarmati","Narmada","Tapi"],
+a:1
+},
+{
+paper:5,
+q:"Economically, India is which type of country?",
+o:["Developed","Backward","Developing","Poor"],
+a:2
+},
+{
+paper:5,
+q:"Which of the following services is NOT related to the service sector?",
+o:["Communication","Health","Banking","Mining of raw metal"],
+a:3
+},
+{
+paper:5,
+q:"During ascent to Everest, which people work as labourers to carry goods of mountaineers?",
+o:["Bhotia people","Sherpa","Siddi","Gujjar"],
+a:0
+},
+{
+paper:5,
+q:"What must be worn by the motorcycle rider and the pillion rider?",
+o:["Helmet","Jacket","Gloves","Boots"],
+a:0
+},
+{
+paper:5,
+q:"Which countries have made their economic development through the market system?",
+o:["America, Japan, England","Russia, China","India, Pakistan","Cuba, Vietnam"],
+a:0
+},
+{
+paper:5,
+q:"Production from small pin to gigantic machines is included in which sector?",
+o:["Primary sector","Secondary sector","Service sector","Tertiary sector"],
+a:1
+},
+
+/* ===================== PAPER 6 ===================== */
+
+{
+paper:6,
+q:"Ambaji is famous for which fair?",
+o:["Bhavnath fair","Bhadarvi Poonam fair","Vautha fair","Tarnetar fair"],
+a:1
+},
+{
+paper:6,
+q:"Girnar is famous for which fair?",
+o:["Bhavnath fair","Bhadarvi Poonam fair","Vautha fair","Shamlaji fair"],
+a:0
+},
+{
+paper:6,
+q:"Dholka is famous for which fair?",
+o:["Bhavnath fair","Bhadarvi Poonam fair","Vautha fair","Nalanda fair"],
+a:2
+},
+{
+paper:6,
+q:"Surat is famous for which handicraft work?",
+o:["Bandhani","Jari Work","Akik work","Enamel work"],
+a:1
+},
+{
+paper:6,
+q:"Patan is historically linked with which ancient educational center/tradition in standard reference?",
+o:["Vallabhi University","Nalanda University","Takshashila","Vikramshila"],
+a:1
+},
+{
+paper:6,
+q:"Statement: Acharya Nagarjuna was a learned Buddhist of Nalanda University.",
+o:["True","False","From Vallabhi","From Takshashila"],
+a:0
+},
+{
+paper:6,
+q:"Statement: Generally available resources are known as easily available resources.",
+o:["True","False","Rare resources","Universal resources"],
+a:0
+},
+{
+paper:6,
+q:"Statement: Rain is the original source of water on Earth.",
+o:["True","False","Rivers are original source","Groundwater is original source"],
+a:0
+},
+{
+paper:6,
+q:"Statement: Most of the rainfall in India occurs during the summer season.",
+o:["True","False","Occurs in winter","Occurs in spring"],
+a:1
+},
+{
+paper:6,
+q:"Statement: Terrorism is just a national problem.",
+o:["True","False","State problem","Regional problem"],
+a:1
+},
+{
+paper:6,
+q:"Which book was written by Maharshi Charak?",
+o:["Charak Samhita","Sushrut Samhita","Vagbhata Samhita","Ashtanga Hridaya"],
+a:0
+},
+{
+paper:6,
+q:"Elephanta Caves are situated in which state of India?",
+o:["Andhra Pradesh","Maharashtra","Gujarat","Goa"],
+a:1
+},
+{
+paper:6,
+q:"Which state gets maximum solar energy potential in India?",
+o:["Maharashtra","Gujarat","Kerala","Tamil Nadu"],
+a:1
+},
+{
+paper:6,
+q:"What is the main economic activity of developing countries?",
+o:["Agriculture","Trade","Industry","Services"],
+a:0
+},
+{
+paper:6,
+q:"Which country has the lowest Human Development Index (HDI) among the given options?",
+o:["Norway","Niger","Brazil","India"],
+a:1
+},
+{
+paper:6,
+q:"Which of the following statements is NOT correct?",
+o:["India proved the feeling of Vasudhaiva Kutumbakam in the world.","I am proud to say that I represent the religion that has taught the lesson of compassion and brotherhood to the world! - Swami Vivekanand.","Indians who believed in tolerance and universal brotherhood even welcomed Dutch and Britishers.","Ancient Indian torch bearers stressed upon economic unity of India."],
+a:3
+},
+{
+paper:6,
+q:"After what age can one get a licence to drive a gearless two-wheeler of engine capacity up to 50 cc?",
+o:["16","18","24","21"],
+a:0
+},
+{
+paper:6,
+q:"Connect the multipurpose projects with beneficiary states: Bhakra Nangal, Kosi, Nagarjuna Sagar, Narmada.",
+o:["(1-B), (2-A), (3-C), (4-D)","(1-B), (2-A), (3-D), (4-C)","(1-D), (2-C), (3-B), (4-A)","(1-C), (2-D), (3-A), (4-B)"],
+a:1
+},
+{
+paper:6,
+q:"What is the average life span of a local earthworm?",
+o:["12 years","14 years","15 years","18 years"],
+a:2
+},
+{
+paper:6,
+q:"Naxalite movement in India originated in which village of West Bengal?",
+o:["Naxalbari","Uttar bari","North bari","Uttar purva"],
+a:0
+},
+{
+paper:6,
+q:"What is a driving licence?",
+o:["A legal authorization document confirming authorization to operate motorized vehicles","A voter identity card","A travel passport","A vehicle registration certificate"],
+a:0
+},
+{
+paper:6,
+q:"Which Indian state has the lowest poverty rate?",
+o:["Goa","Bihar","Odisha","Uttar Pradesh"],
+a:0
+},
+{
+paper:6,
+q:"When is World Elderly Day celebrated?",
+o:["1 October","5 June","8 March","10 December"],
+a:0
+},
+{
+paper:6,
+q:"The first Earth Conference 1972 was organized in which city of Sweden?",
+o:["Stockholm","Gothenburg","Malmo","Uppsala"],
+a:0
+},
+
+/* ===================== PAPER 7 ===================== */
+
+{
+paper:7,
+q:"Bandhani printing work is famous at which location in Gujarat?",
+o:["Jetpur","Punjab","West Bengal","Patan"],
+a:0
+},
+{
+paper:7,
+q:"Harappa town site is historically associated with which region?",
+o:["Punjab","Jetpur","West Bengal","Patan"],
+a:0
+},
+{
+paper:7,
+q:"Sundarban delta is located in which state?",
+o:["West Bengal","Punjab","Gujarat","Odisha"],
+a:0
+},
+{
+paper:7,
+q:"Diamonds are formed under metamorphic conditions in which rock types?",
+o:["Metamorphic Rocks","Igneous Rocks","Sedimentary Rocks","Volcanic Rocks"],
+a:0
+},
+{
+paper:7,
+q:"What percentage of Earth's surface is covered by water?",
+o:["71%","29%","50%","84%"],
+a:0
+},
+{
+paper:7,
+q:"Statement: The earlier Buddhist literature was written in Pali.",
+o:["True","False","Written in Sanskrit","Written in Tamil"],
+a:0
+},
+{
+paper:7,
+q:"Statement: Harappa town of ancient civilization was found in Pakistan.",
+o:["True","False","Located in India","Located in Nepal"],
+a:1
+},
+{
+paper:7,
+q:"Statement: Local earthworm eats vegetables.",
+o:["True","False","Eats meat","Eats insects"],
+a:1
+},
+{
+paper:7,
+q:"Statement: UNICEF is an international organisation working for human development.",
+o:["True","False","Working for environment","Working for world peace"],
+a:1
+},
+{
+paper:7,
+q:"Statement: India's social structure is based on casteism.",
+o:["True","False","Based on class only","Based on gender only"],
+a:0
+},
+{
+paper:7,
+q:"Sites of natural and cultural heritage of India are accommodated in the World Heritage list by:",
+o:["UNICEF","UNO","UNESCO","WTO"],
+a:2
+},
+{
+paper:7,
+q:"The Bombay Natural History Society, the oldest organisation, was established in:",
+o:["1938","1883","1783","1905"],
+a:1
+},
+{
+paper:7,
+q:"How many primary mediums of irrigation are there in India?",
+o:["3","2","4","5"],
+a:0
+},
+{
+paper:7,
+q:"In second century the famous Grand Anicut canal was constructed across river:",
+o:["Narmada","Kaveri","Krishna","Godavari"],
+a:1
+},
+{
+paper:7,
+q:"Who work as porters during the ascent of Everest?",
+o:["Siddis","Bhutiya","Shepherd","Gujjars"],
+a:1
+},
+{
+paper:7,
+q:"Which benefit does India get because of tourism?",
+o:["Employment to local people","Earning foreign currency","Keeping vanishing arts alive","All of these"],
+a:3
+},
+{
+paper:7,
+q:"Which is the main source of surface water on Earth?",
+o:["Rivers","Lakes","Ponds","Groundwater"],
+a:0
+},
+{
+paper:7,
+q:"After what age can one get a motor vehicle licence in India?",
+o:["15","16","17","18"],
+a:3
+},
+{
+paper:7,
+q:"Which system is called free economy?",
+o:["Market system","Socialist system","Mixed economy","Planned system"],
+a:0
+},
+{
+paper:7,
+q:"Education is included in which sector of economy?",
+o:["Primary","Service","Secondary","Manufacturing"],
+a:1
+},
+{
+paper:7,
+q:"What is India's rank in the world for the railway network?",
+o:["First","Second","Third","Fourth"],
+a:1
+},
+{
+paper:7,
+q:"Which animals are used for transportation in mountain forests and deserts?",
+o:["Mule, horse, yak, and camel","Elephants only","Lions and tigers","Dogs and cats"],
+a:0
+},
+{
+paper:7,
+q:"What does economic development include?",
+o:["Increase in national income, per capita income, and improvement in living standard","Increase in population size","Increase in national imports","Increase in tax rate"],
+a:0
+},
+{
+paper:7,
+q:"What do you require to drive any motor vehicle?",
+o:["Driving licence","Aadhar Card","Passport","Ration Card"],
+a:0
+},
+
+/* ===================== PAPER 8 ===================== */
+
+{
+paper:8,
+q:"Enamel work (Meenakari) is associated with which city in the matching options?",
+o:["Hyderabad","Madhya Pradesh","Jamnagar","Kolkata"],
+a:0
+},
+{
+paper:8,
+q:"Stupa of Sanchi is located in which state?",
+o:["Madhya Pradesh","Hyderabad","Jamnagar","Kolkata"],
+a:0
+},
+{
+paper:8,
+q:"Marine National Park is situated near which location?",
+o:["Jamnagar","Madhya Pradesh","Hyderabad","Kolkata"],
+a:0
+},
+{
+paper:8,
+q:"Chromium is primarily used for which purpose?",
+o:["Used as Alloys","Energy resource","Construction","Fertilizer"],
+a:0
+},
+{
+paper:8,
+q:"What is the main source of energy on Earth?",
+o:["The Sun","Wind","Coal","Petroleum"],
+a:0
+},
+{
+paper:8,
+q:"Statement: Samaveda is the most ancient book of Indian literature.",
+o:["True","False","Rigveda is most ancient","Atharvaveda is most ancient"],
+a:1
+},
+{
+paper:8,
+q:"Statement: Mohen-jo-daro means the heap of the dead.",
+o:["True","False","Heap of living","City of gold"],
+a:0
+},
+{
+paper:8,
+q:"Statement: Lifespan of a local earthworm is 15 years.",
+o:["True","False","5 years","10 years"],
+a:0
+},
+{
+paper:8,
+q:"Statement: UNICEF is an international organisation working for human development.",
+o:["True","False","Works for children","Works for food"],
+a:1
+},
+{
+paper:8,
+q:"Statement: National Minority Commission has been set up for protecting the rights, interest, welfare and progress of minorities.",
+o:["True","False","Set up for majority","Abolished"],
+a:0
+},
+{
+paper:8,
+q:"Indian government has constituted the Indian Board of Wildlife in which year?",
+o:["1952","1972","1981","1991"],
+a:0
+},
+{
+paper:8,
+q:"What feature of India forms its unique identity in the world?",
+o:["Diversity","Religion","Communities","Language"],
+a:0
+},
+{
+paper:8,
+q:"The Eastern Yamuna canal was constructed in Uttar Pradesh in:",
+o:["1782","1882","1928","1950"],
+a:1
+},
+{
+paper:8,
+q:"How many main sources of water exist on Earth?",
+o:["1","2","3","4"],
+a:2
+},
+{
+paper:8,
+q:"National Highway No. ___ is the longest highway of the country.",
+o:["27","41","44","8"],
+a:2
+},
+{
+paper:8,
+q:"Vasudhaiva Kutumbakam is the message we get from:",
+o:["Rigveda","Aranyaka","Mahabharat","Ramayan"],
+a:0
+},
+{
+paper:8,
+q:"In the second century, which canal was constructed across river Kaveri?",
+o:["Eastern Yamuna canal","Grand Anicut canal","Damodar canal","Krishna canal"],
+a:1
+},
+{
+paper:8,
+q:"In which lane should light-speed and heavy vehicles be driven?",
+o:["Right lane","Middle lane","Left lane","Central lane"],
+a:2
+},
+{
+paper:8,
+q:"Which system is called free economy?",
+o:["Socialist system","Mixed economy","Market system","Controlled system"],
+a:2
+},
+{
+paper:8,
+q:"Education can be included in which sector?",
+o:["Primary sector","Service sector","Secondary sector","Training sector"],
+a:1
+},
+{
+paper:8,
+q:"What is India's rank in the world for the railway network?",
+o:["First","Second","Third","Fourth"],
+a:1
+},
+{
+paper:8,
+q:"Which animals are used for transportation in mountain forests and deserts?",
+o:["Elephants, Himalayan yak, horse, mule, camel","Lions and tigers","Dogs and cats","Rhinos"],
+a:0
+},
+{
+paper:8,
+q:"Generally, how much population of a developing country is poor?",
+o:["One third","One half","One fourth","Two third"],
+a:0
+},
+{
+paper:8,
+q:"What is LMV?",
+o:["Light Motor Vehicle","Large Motor Vehicle","Local Motor Vehicle","Long Distance Vehicle"],
+a:0
+},
+
+/* ===================== PAPER 9 ===================== */
+
+{
+paper:9,
+q:"Padmapani cave painting (Ajanta) is located in / linked to which state?",
+o:["Madhya Pradesh","Gujarat","Rajasthan","Bihar"],
+a:0
+},
+{
+paper:9,
+q:"Lothal ancient port site is located in which state?",
+o:["Gujarat","Rajasthan","Madhya Pradesh","Punjab"],
+a:0
+},
+{
+paper:9,
+q:"Keoladev National Park is situated in which state?",
+o:["Rajasthan","Gujarat","Madhya Pradesh","Assam"],
+a:0
+},
+{
+paper:9,
+q:"Mica is classified under which type of mineral?",
+o:["Metallic minerals","Non-metallic minerals","Energy minerals","Precious minerals"],
+a:1
+},
+{
+paper:9,
+q:"What is the age span of a local earthworm?",
+o:["15 years","5 years","10 years","20 years"],
+a:0
+},
+{
+paper:9,
+q:"Statement: Tamil is the oldest language of Dravidian family.",
+o:["True","False","Telugu is oldest","Kannada is oldest"],
+a:0
+},
+{
+paper:9,
+q:"Statement: The stupa of Sanchi, built during the Mauryan period is located in Madhya Pradesh.",
+o:["True","False","Located in Gujarat","Located in UP"],
+a:0
+},
+{
+paper:9,
+q:"Statement: Matter is continuously converted into energy by the sun.",
+o:["True","False","By moon","By earth"],
+a:0
+},
+{
+paper:9,
+q:"Statement: The year 1985 was celebrated as Women Empowerment Year in India.",
+o:["True","False","Celebrated in 2001","Celebrated in 1975"],
+a:1
+},
+{
+paper:9,
+q:"Statement: Some seats for Scheduled Caste and Scheduled Tribe are reserved in Rajya Sabha under special provision.",
+o:["True","False","Reserved only in Lok Sabha","Reserved everywhere"],
+a:1
+},
+{
+paper:9,
+q:"The Bombay Natural History Society, the oldest organisation, was established in:",
+o:["1938","1883","1783","1947"],
+a:1
+},
+{
+paper:9,
+q:"What feature of India is its unique identity?",
+o:["Diversity","Religion","Communities","Language"],
+a:0
+},
+{
+paper:9,
+q:"What is the main source of surface water?",
+o:["Well","River","Rain","Pond"],
+a:1
+},
+{
+paper:9,
+q:"About what percentage of water in India is useful for irrigation?",
+o:["45%","65%","84%","95%"],
+a:2
+},
+{
+paper:9,
+q:"Who constructs roads in the border area for the defence of the country?",
+o:["NHAI","State PWD","Border Road Organisation","Indian Railways"],
+a:2
+},
+{
+paper:9,
+q:"Who said: I am proud to say that I represent the religion that has taught the lesson of tolerance, compassion and universal fraternity to the world?",
+o:["Rabindranath Tagore","Mahatma Gandhi","Jawaharlal Nehru","Swami Vivekananda"],
+a:3
+},
+{
+paper:9,
+q:"Select the correct order of the following multipurpose projects from North to South:",
+o:["Chambal valley, Bhakra Nangal, Narmada valley, Nagarjuna Sagar","Bhakra Nangal, Nagarjuna Sagar, Narmada valley, Chambal valley","Nagarjuna Sagar, Chambal valley, Narmada Valley, Bhakra Nangal","Bhakra Nangal, Chambal Valley, Narmada Valley, Nagarjuna Sagar"],
+a:3
+},
+{
+paper:9,
+q:"A person aged 16 years can get a licence to drive:",
+o:["Two wheeler without gear","Heavy transport vehicle","Two wheeler with gear 100 CC","All types of vehicles"],
+a:0
+},
+{
+paper:9,
+q:"What is the disadvantage of the market system?",
+o:["Abundant production","Improvement in quality of goods","Distribution of resources is based on profit","There is an exploitation of labourers"],
+a:3
+},
+{
+paper:9,
+q:"Which system is called a controlled economic system?",
+o:["Socialist economy","Market economy","Mixed economy","None of these"],
+a:2
+},
+{
+paper:9,
+q:"When was the first railway started in India?",
+o:["1853","1857","1901","1947"],
+a:0
+},
+{
+paper:9,
+q:"How many types of waterways are in India?",
+o:["Two types (Internal and International)","Three types","Four types","Five types"],
+a:0
+},
+{
+paper:9,
+q:"Which of the following is an example of the Secondary Sector?",
+o:["Production of different materials from pin to plane","Farming and harvesting","Banking and insurance","Fishing and forestry"],
+a:0
+},
+{
+paper:9,
+q:"What is a Lane on a road?",
+o:["A road section divided by vertical white/yellow lines for traffic system/control","A pedestrian pathway","A parking spot","A highway toll booth"],
+a:0
+},
+
+/* ===================== PAPER 10 ===================== */
+
+{
+paper:10,
+q:"Cave paintings of primitive men (Bhimbetka) are located in which state?",
+o:["Madhya Pradesh","Tamil Nadu","Assam","Gujarat"],
+a:0
+},
+{
+paper:10,
+q:"Famous temples of Madurai are situated in which state?",
+o:["Madhya Pradesh","Tamil Nadu","Assam","Karnataka"],
+a:1
+},
+{
+paper:10,
+q:"One-horned rhinoceros is predominantly found in which state?",
+o:["Assam","Madhya Pradesh","Tamil Nadu","Gujarat"],
+a:0
+},
+{
+paper:10,
+q:"Uranium is primarily classified as which resource?",
+o:["Energy resource","Agricultural resource","Forest resource","Water resource"],
+a:0
+},
+{
+paper:10,
+q:"The classification system of natural farming in India was advocated by:",
+o:["Dr. Subhash Palekar","Amartya Sen","MS Swaminathan","Verghese Kurien"],
+a:0
+},
+{
+paper:10,
+q:"Statement: Vallabhi University was located in Gujarat in 7th century.",
+o:["True","False","Located in Bihar","Located in UP"],
+a:0
+},
+{
+paper:10,
+q:"Statement: The stone inscriptions of Buddhist religion are found in Brahmi script.",
+o:["True","False","Found in Devanagari","Found in Latin"],
+a:0
+},
+{
+paper:10,
+q:"Statement: Green leaves produce sucrose.",
+o:["True","False","Produce proteins only","Produce fats only"],
+a:0
+},
+{
+paper:10,
+q:"Statement: Economist of Indian origin, Amartya Sen got Nobel prize.",
+o:["True","False","Got Pulitzer Prize","Got Oscar"],
+a:0
+},
+{
+paper:10,
+q:"Statement: Untouchability is considered to be a legal punishable crime under Article 17.",
+o:["True","False","Article 21","Article 14"],
+a:0
+},
+{
+paper:10,
+q:"Which organization has more than 5,000 monuments and sites under its protection?",
+o:["ASI (Archaeological Survey of India)","UNESCO","UNO","NITI Aayog"],
+a:0
+},
+{
+paper:10,
+q:"Shri Hemchandracharya library is located in which state?",
+o:["Gujarat","West Bengal","Maharashtra","Bihar"],
+a:0
+},
+{
+paper:10,
+q:"90% area of total area sown is under irrigation in which state?",
+o:["Mizoram","Uttar Pradesh","Punjab","Bihar"],
+a:2
+},
+{
+paper:10,
+q:"How much of the agriculture region still depends on rainwater?",
+o:["One third","Two thirds","Half","One fourth"],
+a:1
+},
+{
+paper:10,
+q:"The road system of India is the _____ largest in the world.",
+o:["First","Second","Third","Fourth"],
+a:1
+},
+{
+paper:10,
+q:"Which temples were shifted successfully to Alampur at Mahabubnagar district Andhra Pradesh?",
+o:["Kanchi and Madurai","Mahabalipuram","Brihadeshwar","Sangameshwar and Papnasham"],
+a:3
+},
+{
+paper:10,
+q:"Select the correct option of river project and its benefited states:",
+o:["Damodar River: Damodar Valley: Jharkhand, West Bengal","Chambal river: Chambal Valley: Madhya Pradesh, Rajasthan","Krishna river: Mahisagar: Andhra Pradesh, Telangana","Kaveri river: Krishnarajsagar: Karnataka, Tamil Nadu"],
+a:1
+},
+{
+paper:10,
+q:"The road is divided by vertical:",
+o:["Yellow stripes","Red stripes","Orange stripes","No stripes"],
+a:0
+},
+{
+paper:10,
+q:"Which one of the following is the feature of a socialist economy?",
+o:["Ownership of the resources is either individual or private","Distribution of resources is based on profit","Social welfare is at the centre","Public and private sectors coexist"],
+a:2
+},
+{
+paper:10,
+q:"What is a demerit of a mixed economy from the given below?",
+o:["There is a lack of individual freedom","There is a fear of monopoly","There is a fear of bureaucracy","Low rate of growth of economic development"],
+a:3
+},
+{
+paper:10,
+q:"Who is responsible for the construction of the National Highways?",
+o:["Central Government","State Government","Gram Panchayat","Municipal Corporation"],
+a:0
+},
+{
+paper:10,
+q:"Which of the following is a major sea port of India?",
+o:["Kandla","Ahmedabad","Jaipur","Bhopal"],
+a:0
+},
+{
+paper:10,
+q:"Which of the following is an example of the service sector?",
+o:["Education, health, banking, insurance, communication, transportation, trade","Farming and harvesting","Mining of raw metal","Textile manufacturing"],
+a:0
+},
+{
+paper:10,
+q:"When should a driver change the lane?",
+o:["Anytime without warning","Only after giving a proper signal or road marking clearance","Only during night","Whenever traffic is heavy"],
+a:1
+}
+
+];
+
+/* =========================================================
+   TEST SETUP
+========================================================= */
+
+let currentPage = 0;
+const questionsPerPage = 10;
+
+const answers = new Array(questions.length).fill(null);
+
+const optionLetters = ["A","B","C","D"];
+
+/*
+Shuffle questions from all 10 papers.
+
+If you want the original Paper 1 → Paper 10 order,
+change this to:
+const testQuestions = [...questions];
+*/
+
+const testQuestions = [...questions].sort(() => Math.random() - 0.5);
+
+
+/* =========================================================
+   DISPLAY QUIZ
+========================================================= */
+
+function renderQuiz() {
+
+    const quiz = document.getElementById("quiz");
+
+    quiz.innerHTML = "";
+
+    const start = currentPage * questionsPerPage;
+    const end = Math.min(start + questionsPerPage, testQuestions.length);
+
+    for(let i = start; i < end; i++) {
+
+        const q = testQuestions[i];
+
+        const div = document.createElement("div");
+
+        div.className = "question";
+
+        let html = "";
+
+        html += `
+            <div class="paper-label">
+                Question ${i+1} of ${testQuestions.length}
+            </div>
+
+            <h3>
+                ${i+1}. ${q.q}
+            </h3>
+        `;
+
+        q.o.forEach((option,index) => {
+
+            const checked = answers[i] === index ? "checked" : "";
+
+            html += `
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="question${i}"
+                        value="${index}"
+                        ${checked}
+                        onchange="saveAnswer(${i},${index})"
+                    >
+                    <b>${optionLetters[index]}.</b>
+                    ${option}
+                </label>
+            `;
+
+        });
+
+        div.innerHTML = html;
+
+        quiz.appendChild(div);
+    }
+
+    updateProgress();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================================================
+   SAVE ANSWER
+========================================================= */
+
+function saveAnswer(questionIndex, optionIndex) {
+
+    answers[questionIndex] = optionIndex;
+
+    updateProgress();
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress() {
+
+    const attempted = answers.filter(a => a !== null).length;
+
+    document.getElementById("attempted").textContent = attempted;
+
+    const percentage =
+        (attempted / questions.length) * 100;
+
+    document.getElementById("progressFill").style.width =
+        percentage + "%";
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function nextPage() {
+
+    if((currentPage + 1) * questionsPerPage < testQuestions.length) {
+
+        currentPage++;
+
+        renderQuiz();
+
+    }
+    else {
+
+        alert("You are on the last page. Please submit the test.");
+
+    }
+}
+
+
+function previousPage() {
+
+    if(currentPage > 0) {
+
+        currentPage--;
+
+        renderQuiz();
+
+    }
+}
+
+
+/* =========================================================
+   SUBMIT TEST
+========================================================= */
+
+function submitTest() {
+
+    const unanswered =
+        answers.filter(a => a === null).length;
+
+    if(unanswered > 0) {
+
+        const confirmSubmit = confirm(
+            "You have " +
+            unanswered +
+            " unanswered question(s).\n\n" +
+            "Do you still want to submit the test?"
+        );
+
+        if(!confirmSubmit) {
+            return;
+        }
+    }
+
+    let correct = 0;
+    let wrong = 0;
+
+    testQuestions.forEach((q,index) => {
+
+        if(answers[index] === q.a) {
+
+            correct++;
+
+        }
+        else if(answers[index] !== null) {
+
+            wrong++;
+
+        }
+
+    });
+
+    const unansweredCount =
+        testQuestions.length - correct - wrong;
+
+    const percentage =
+        ((correct / testQuestions.length) * 100).toFixed(2);
+
+    const studentName =
+        document.getElementById("studentName").value.trim();
+
+    const studentRoll =
+        document.getElementById("studentRoll").value.trim();
+
+    let grade = "";
+
+    if(percentage >= 90)
+        grade = "Excellent ⭐⭐⭐⭐⭐";
+    else if(percentage >= 75)
+        grade = "Very Good ⭐⭐⭐⭐";
+    else if(percentage >= 60)
+        grade = "Good ⭐⭐⭐";
+    else if(percentage >= 40)
+        grade = "Needs Improvement ⭐⭐";
+    else
+        grade = "Keep Practising ⭐";
+
+    let html = `
+
+        <h2>TEST RESULT</h2>
+
+        <div class="score">
+            ${correct} / ${testQuestions.length}
+        </div>
+
+        <p style="text-align:center">
+            <b>${percentage}%</b>
+        </p>
+
+        <p style="text-align:center">
+            <b>${studentName || "Student"}</b>
+            ${studentRoll ? " | Roll No: " + studentRoll : ""}
+        </p>
+
+        <p style="text-align:center">
+            ${grade}
+        </p>
+
+        <div class="result-summary">
+
+            <div class="summary-box correct-box">
+                Correct<br>
+                ${correct}
+            </div>
+
+            <div class="summary-box wrong-box">
+                Wrong<br>
+                ${wrong}
+            </div>
+
+            <div class="summary-box unanswered-box">
+                Unanswered<br>
+                ${unansweredCount}
+            </div>
+
+        </div>
+
+        <hr>
+
+        <h2>Answer Review</h2>
+
+    `;
+
+
+    testQuestions.forEach((q,index) => {
+
+        const studentAnswer = answers[index];
+
+        let className = "";
+        let status = "";
+
+        if(studentAnswer === q.a) {
+
+            className = "review-correct";
+            status = "✓ Correct";
+
+        }
+        else if(studentAnswer === null) {
+
+            className = "review-unanswered";
+            status = "⚠ Not Answered";
+
+        }
+        else {
+
+            className = "review-wrong";
+            status = "✗ Wrong";
+
+        }
+
+        html += `
+
+            <div class="review-item ${className}">
+
+                <b>
+                    Q${index+1}. ${q.q}
+                </b>
+
+                <p>
+                    <b>Status:</b> ${status}
+                </p>
+
+        `;
+
+        if(studentAnswer !== null) {
+
+            html += `
+                <p class="your-answer">
+                    Your Answer:
+                    ${optionLetters[studentAnswer]}.
+                    ${q.o[studentAnswer]}
+                </p>
+            `;
+
+        }
+        else {
+
+            html += `
+                <p class="your-answer">
+                    Your Answer: Not Answered
+                </p>
+            `;
+
+        }
+
+        html += `
+
+                <p class="correct-answer">
+                    Correct Answer:
+                    ${optionLetters[q.a]}.
+                    ${q.o[q.a]}
+                </p>
+
+            </div>
+
+        `;
+
+    });
+
+
+    html += `
+
+        <button class="restart" onclick="restartTest()">
+            RETAKE TEST
+        </button>
+
+    `;
+
+
+    const result = document.getElementById("result");
+
+    result.innerHTML = html;
+
+    result.style.display = "block";
+
+    result.scrollIntoView({
+        behavior: "smooth"
+    });
+
+    /*
+       Hide quiz after submission.
+    */
+
+    document.getElementById("quiz").style.display = "none";
+
+    document.querySelector(".navigation").style.display = "none";
+
+    document.querySelector(".submit").style.display = "none";
+
+}
+
+
+/* =========================================================
+   RESTART
+========================================================= */
+
+function restartTest() {
+
+    location.reload();
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+renderQuiz();
+
+</script>
+
+</body>
+</html>
